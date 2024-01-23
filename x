@@ -5,6 +5,9 @@ function str(){
 
 # run_c "$1"
 function runner(){
+  args=("$@")
+  args=${args[@]:1}
+
   if [[ $1 == *.c ]]; then
     str "$1" | gcc -w -x c -;
   elif [[ $1 == *.rs ]]; then
@@ -13,13 +16,13 @@ function runner(){
     str "$1" | gfortran -ffree-form -x f95 -o tmp -;
   # execute directly
   elif [[ $1 == *.go ]]; then
-    go run "$1"
+    go run "$1" $args
   elif [[ $1 == *.js ]]; then
-    node "$1"
+    node "$1" $args
   elif [[ $1 == *.py ]]; then
-    python3 "$1"
+    python3 "$1" $args
   elif [[ $1 == *.sh ]]; then
-    sh "$1"
+    sh "$1" $args
   elif [[ $1 == *.ts ]]; then
     # check if /bin/bun exist
     if !command -v bun &> /dev/null
@@ -31,15 +34,15 @@ function runner(){
         exit 1
       else
         tsc "$1"
-        node "${1%.*}.js"
+        node "${1%.*}.js" $args
         exit 1
       fi
     fi
-    bun "$1"
+    bun "$1" $args
   # exec string
   elif [[ $1 == *.php ]]; then
     string=$(str "$1")
-    php -r "$string"
+    php -r "$string" $args
   else
     echo "Language not supported yet"
     exit 1
@@ -47,12 +50,12 @@ function runner(){
 
   # execute
   if [ -f tmp ]; then
-    ./tmp
+    ./tmp $args
     rm tmp
   elif [ -f a.out ]; then
-    ./a.out
+    ./a.out $args
     rm a.out
   fi
 }
 
-runner "$1"
+runner "$1" "${@:2}"

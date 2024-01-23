@@ -7,3 +7,7 @@
 
 ## Caveats
 - Gamma func is approximate since for small x it uses laurin series and then reduces error via pade's approximation
+
+## TODO:
+- Pass args into each `x file args`
+- Run test in->a->b->c->...out

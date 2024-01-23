@@ -21,7 +21,7 @@ fn main() {
   let base = ((product * 1012345.0) % 10.0).floor().abs();
 
   let rand = elliptic(a, b, base);
-  let rand = (rand % (2.0_f64).powf(8.0)) as i8;
+  let rand = (rand % (2.0_f64).powf(16.0)) as i16;
 
   println!("{}", rand);
 }
