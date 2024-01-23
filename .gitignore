@@ -2,3 +2,5 @@
 node_modules
 a.out
 tmp
+.vscode/
+*.mod
