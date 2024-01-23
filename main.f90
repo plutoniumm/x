@@ -67,9 +67,18 @@ end function isprime
 program main
   implicit none
   integer(kind=8) :: n
+  character(len=2) :: cin
   logical :: isprime
   logical :: is
-  n = 1234567
+  ! n = 1234567
+
+  call get_command_argument(1, cin)
+  read(cin, *) n
+
+  if (n < 0) then
+    print *, "not a positive integer"
+    stop
+  end if
 
   ! if <10 and 2,3,5,7 then prime
   if (n < 10) then

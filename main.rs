@@ -1,5 +1,3 @@
-use std::time::{SystemTime, UNIX_EPOCH};
-
 const LOOPS: i16 = 4;
 
 // y^2 = x^3 + ax + b
@@ -13,10 +11,8 @@ fn elliptic(a: f64, b: f64, x: f64) -> f64 {
 }
 
 fn main() {
-  let start = SystemTime::now();
-  let since_the_epoch = start.duration_since(UNIX_EPOCH).expect("Time went backwards");
-
-  let ms = since_the_epoch.as_secs() as f64 + since_the_epoch.subsec_nanos() as f64 / 1_000_000_000.0;
+  // unwrap will panic if there is no argument :)
+  let ms = std::env::args().nth(1).unwrap().parse::<f64>().unwrap();
 
   let product = ms.cos() * ms.sin();
 
