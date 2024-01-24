@@ -18,7 +18,7 @@ fn main() {
 
   let a = ((product * 10123.0) % 10.0).floor().abs();
   let b = ((product * 101234.0) % 10.0).floor().abs();
-  let base = ((product * 1012345.0) % 10.0).floor().abs();
+  let base = ((product * 10.0) % 10.0).floor().abs();
 
   let rand = elliptic(a, b, base);
   let rand = (rand % (2.0_f64).powf(16.0)) as i16;

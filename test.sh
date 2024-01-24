@@ -4,15 +4,22 @@
 # expected=(/* todo */)
 actual=()
 
-exts=("c" "f90" "go" "js" "py" "rs" "ts")
-current=0
+exts=("c" "rb" "js" "ts" "hs" "rs" "php" "go")
+current=15
 iter=0
 for file in ${exts[@]}; do
   filename="test/main.$file"
+  echo "Running $filename with $current"
+
   current=$(./x $filename $current)
+  if [ $? -ne 0 ]; then
+    echo "Error: $filename"
+    exit 1
+  fi
+
   iter=$((iter+1))
+  echo "at $iter: $current"
   actual[$iter]=$current
-  echo "Test $current: $filename"
 done
 
 # if lasts are equal then we are good

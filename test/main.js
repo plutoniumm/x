@@ -33,7 +33,6 @@ const createMatrix = ( n ) => {
 
 
 let args = process.argv.slice( 2 );
-console.log( args );
 const n = parseInt( args[ 0 ] );
 if ( isNaN( n ) ) {
   throw new Error( "Invalid number: " + args[ 0 ] );
