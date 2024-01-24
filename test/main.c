@@ -11,6 +11,6 @@ bool stack_recurse(int *recvar) {
 }
 
 int main() {
-  printf("Stack Direction: %s\n", stack_recurse(NULL) ? "1" : "-1");
+  printf("%d\n", stack_recurse(NULL) ? 1 : -1);
   return 0;
 }

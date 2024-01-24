@@ -3,10 +3,28 @@ function str(){
   cat "$1" | sed -e 's/\t/ /g' | sed -e 's/  */ /g'
 }
 
+# script may have a shebang
+function parse_shebang(){
+  if [[ $1 == "#!"* ]]; then
+    first=$(head -n 1 "$1")
+    first=${first:2}
+    first=$(echo "$first" | sed -e 's/ //g')
+
+    IFS='/' read -ra ADDR <<< "$first"
+    last="${ADDR[-1]}"
+    last=${last:2}
+    last=${last::-1}
+    echo "$last"
+  else
+    echo "$1"
+  fi
+}
+
 # run_c "$1"
 function runner(){
   args=("$@")
   args=${args[@]:1}
+  shebang=$(parse_shebang "$1")
 
   if [[ $1 == *.c ]]; then
     str "$1" | gcc -w -x c -;
@@ -21,8 +39,6 @@ function runner(){
     node "$1" $args
   elif [[ $1 == *.py ]]; then
     python3 "$1" $args
-  elif [[ $1 == *.sh ]]; then
-    sh "$1" $args
   elif [[ $1 == *.ts ]]; then
     # check if /bin/bun exist
     if !command -v bun &> /dev/null
@@ -44,7 +60,7 @@ function runner(){
     string=$(str "$1")
     php -r "$string" $args
   else
-    echo "Language not supported yet"
+    echo "not supported, got $1"
     exit 1
   fi
 
