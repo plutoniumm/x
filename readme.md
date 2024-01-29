@@ -13,26 +13,22 @@
 
 ## Types
 ```mermaid
+graph LR
  C --> RB --> JS -->
 TS --> HS --> RS -->
 PHP --> GO
 ```
-- `c`: void &rarr; +1/-1
-- `rb`: int &rarr; int
-- `js`: int &rarr; int
-- `ts`: int &rarr; int
-- `hs`: int &rarr; float
-- `rs`: float &rarr; float
-- `php`: string/float &rarr; float
-- `go`: float &rarr; float
 
-- `f90`: int &rarr; string
-- `py`: int &rarr; float
-
-
-## Caveats
-- Gamma func is approximate since for small x it uses laurin series and then reduces error via pade's approximation
-
-## TODO:
-- Pass args into each `x file args`
-- Run test in->a->b->c->...out
+| Lang | In Type | Out Type |
+| ---- | ------- | -------- |
+| C    | void    | int      |
+| RB   | int     | int      |
+| JS   | int     | int      |
+| TS   | int     | int      |
+| HS   | int     | float    |
+| RS   | float   | float    |
+| PHP  | string/float | float |
+| GO   | float   | float    |
+<!--  -->
+| F90  | int     | string   |
+| PY   | int     | float    |

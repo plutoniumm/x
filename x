@@ -11,27 +11,14 @@ function exists(){
   fi
 }
 
-# # script may have a shebang
-# function parse_shebang(){
-#   if [[ $1 == "#!"* ]]; then
-#     first=$(head -n 1 "$1")
-#     first=${first:2}
-#     first=$(echo "$first" | sed -e 's/ //g')
-
-#     IFS='/' read -ra ADDR <<< "$first"
-#     last="${ADDR[-1]}"
-#     last=${last:2}
-#     last=${last::-1}
-#     echo "$last"
-#   else
-#     echo "$1"
-#   fi
-# }
-
-# run_c "$1"
 function runner(){
   args=("$@")
   args=("${args[@]:1}")
+  rcv_stdin=""
+  if [ -p /dev/stdin ]; then
+    rcv_stdin=$(cat -)
+    args+=("$rcv_stdin")
+  fi
 
   # stream to compiler
   if [[ $1 == *.c ]]; then
@@ -43,9 +30,11 @@ function runner(){
 
   # execute directly
   elif [[ $1 == *.rb ]]; then
-    ruby "$1" $args
+    ruby "$1" "${args[@]}"
+    exit 0
   elif [[ $1 == *.go ]]; then
-    go run "$1" $args
+    go run "$1" "${args[@]}"
+    exit 0
   elif [[ $1 == *.hs ]]; then
     # check if ghc
     has_ghc=$(exists ghc)
@@ -57,14 +46,18 @@ function runner(){
     fi
     # if ghc then use ghc
     if [ "$has_ghc" == "true" ]; then
-      ghc "$1" $args
+      ghc "$1" "${args[@]}"
+      exit 0
     else
-      stack runghc "$1" $args
+      stack runghc "$1" "${args[@]}"
+      exit 0
     fi
   elif [[ $1 == *.js ]]; then
-    node "$1" $args
+    node "$1" "${args[@]}"
+    exit 0
   elif [[ $1 == *.py ]]; then
-    python3 "$1" $args
+    python3 "$1" "${args[@]}"
+    exit 0
   elif [[ $1 == *.ts ]]; then
     has_bun=$(exists bun)
     has_tsc=$(exists tsc)
@@ -74,13 +67,17 @@ function runner(){
       exit 1
     fi
     if [ "$has_bun" == "true" ]; then
-      bun "$1" $args
+      bun "$1" "${args[@]}"
+      exit 0
     else
       tsc "$1"
-      node "${1%.*}.js" $args
+      node "${1%.*}.js" "${args[@]}"
+      rm "${1%.*}.js"
+      exit 0
     fi
   elif [[ $1 == *.php ]]; then
-    php "$1" $args
+    php "$1" "${args[@]}"
+    exit 0
   else
     echo "not supported, got $1"
     exit 1
@@ -88,10 +85,10 @@ function runner(){
 
   # execute
   if [ -f tmp ]; then
-    ./tmp $args
+    ./tmp "${args[@]}"
     rm tmp
   elif [ -f a.out ]; then
-    ./a.out $args
+    ./a.out "${args[@]}"
     rm a.out
   fi
 }
