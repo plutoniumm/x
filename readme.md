@@ -7,16 +7,18 @@
 - `main.rs`: Some Elliptic curve value from `./a.out :float:`
 - `main.php`: Calculate entropy of a string for `:string:`
 - `main.go`: approx Gamma function for `:real+:`
-
+- `main.sc`: Count #iters to find a float in 0-1 using binary search
+- `main.lua`: Convert to base 7
+- `main.f90`: 1 for "prime" or 2 for "composite" for `./a.out :int+:`
 - `main.py`: Calculate energy for QHM at nth level for `:[1-5]:`
-- `main.f90`: "prime" or "composite" for `./a.out :int+:`
 
 ## Types
 ```mermaid
 graph LR
  C --> RB --> JS -->
 TS --> HS --> RS -->
-PHP --> GO
+PHP --> GO --> SC -->
+f90 --> PY
 ```
 
 | Lang | In Type | Out Type |
@@ -29,6 +31,6 @@ PHP --> GO
 | RS   | float   | float    |
 | PHP  | string/float | float |
 | GO   | float   | float    |
-<!--  -->
+| SC   | float   | int      |
 | F90  | int     | string   |
 | PY   | int     | float    |

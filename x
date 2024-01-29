@@ -32,6 +32,17 @@ function runner(){
   elif [[ $1 == *.rb ]]; then
     ruby "$1" "${args[@]}"
     exit 0
+  elif [[ $1 == *.lua ]]; then
+    lua "$1" "${args[@]}"
+    exit 0
+  elif [[ $1 == *.sc ]]; then
+    scala "$1" "${args[@]}"
+    exit 0
+  elif [[ $1 == *.java ]]; then
+    javac "$1"
+    java "${1%.*}" "${args[@]}"
+    rm "${1%.*}.class"
+    exit 0
   elif [[ $1 == *.go ]]; then
     go run "$1" "${args[@]}"
     exit 0

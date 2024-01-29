@@ -89,9 +89,12 @@ program main
     end if
   end if
 
+  ! 1 for "prime" or 2 for "composite"
   if (is) then
-    print *, "prime"
+    ! prime
+    print *, "1"
   else
-    print *, "composite"
+    ! composite
+    print *, "2"
   end if
 end program main
