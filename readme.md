@@ -11,6 +11,7 @@
 - `main.lua`: Convert to base 7
 - `main.f90`: 1 for "prime" or 2 for "composite" for `./a.out :int+:`
 - `main.py`: Calculate energy for QHM at nth level for `:[1-5]:`
+- `main.ml`: Golden ratio from fib series from seeds `:float:`
 
 ## Types
 ```mermaid
@@ -18,19 +19,21 @@ graph LR
  C --> RB --> JS -->
 TS --> HS --> RS -->
 PHP --> GO --> SC -->
-f90 --> PY
+Lua --> f90 --> PY -->
+ML
 ```
 
 | Lang | In Type | Out Type |
 | ---- | ------- | -------- |
 | C    | void    | int      |
-| RB   | int     | int      |
-| JS   | int     | int      |
-| TS   | int     | int      |
-| HS   | int     | float    |
-| RS   | float   | float    |
+| Ruby   | int     | int      |
+| Javascript   | int     | int      |
+| Typescript   | int     | int      |
+| Haskell   | int     | float    |
+| Rust   | float   | float    |
 | PHP  | string/float | float |
-| GO   | float   | float    |
-| SC   | float   | int      |
-| F90  | int     | string   |
-| PY   | int     | float    |
+| Gi   | float   | float    |
+| Scala   | float   | int      |
+| Fortran  | int     | string   |
+| Python   | int     | float    |
+| OCaml | float   | float    |

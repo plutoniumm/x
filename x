@@ -46,6 +46,9 @@ function runner(){
   elif [[ $1 == *.go ]]; then
     go run "$1" "${args[@]}"
     exit 0
+  elif [[ $1 == *.ml ]]; then
+    ocaml "$1" "${args[@]}"
+    exit 0
   elif [[ $1 == *.hs ]]; then
     # check if ghc
     has_ghc=$(exists ghc)
