@@ -23,6 +23,8 @@ function runner(){
   # stream to compiler
   if [[ $1 == *.c ]]; then
     str "$1" | gcc -w -x c -;
+  if [[ $1 == *.cpp ]]; then
+    str "$1" | g++ -w -x c++ -;
   elif [[ $1 == *.rs ]]; then
     str "$1" | rustc -o tmp -;
   elif [[ $1 == *.f90 ]]; then
@@ -43,6 +45,12 @@ function runner(){
     java "${1%.*}" "${args[@]}"
     rm "${1%.*}.class"
     exit 0
+  elif [[ $1 == *.kt ]]; then
+    kotlinc "$1" -include-runtime -d tmp.jar
+    java -jar tmp.jar "${args[@]}"
+    rm tmp.jar
+    exit 0
+
   elif [[ $1 == *.go ]]; then
     go run "$1" "${args[@]}"
     exit 0

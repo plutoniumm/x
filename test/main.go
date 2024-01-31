@@ -9,9 +9,9 @@ import (
 
 func gamma(x float64) float64 {
 	if x < 0 {
-		return 0
+		return gamma(x + 1) / x
 	}
-	if x == 1 {
+	if x == 0 {
 		return 1
 	}
 	if x < 1 {
@@ -32,8 +32,6 @@ func gamma(x float64) float64 {
 
 		return Gamma
 	}
-
-
 	return (x - 1) * gamma(x - 1)
 }
 

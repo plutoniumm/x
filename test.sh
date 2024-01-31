@@ -1,10 +1,10 @@
 # we now run all programs of main.ext in sequence and test
 # testing general runner ./x <file> args
-expected=("-1" "4" "1" "2" "295.33612" "158" "1.5849625007212" "0.9160792412167597" "52" "103" "1" "-13.643408" "1.618034")
+expected=("-1" "4" "1" "2" "295.33612" "158" "1.5849625007212" "0.9160792412167597" "52" "103" "1" "-13.643408" "1.618034" "55" "3.14205")
 
 # py, f90
-exts=("c" "rb" "js" "ts" "hs" "rs" "php" "go" "sc" "lua" "f90" "py" "ml")
-current=15
+exts=("c" "rb" "js" "ts" "hs" "rs" "php" "go" "sc" "lua" "f90" "py" "ml" "kt" "cpp")
+current=""
 iter=0
 for file in ${exts[@]}; do
   filename="test/main.$file"
