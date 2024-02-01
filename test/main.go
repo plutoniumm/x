@@ -36,8 +36,6 @@ func gamma(x float64) float64 {
 }
 
 func main(){
-	// num := 1.5
-	// take num from args
 	args := os.Args[1:]
 	num, err := strconv.ParseFloat(args[0], 64)
 	if err != nil {
