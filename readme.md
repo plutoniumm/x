@@ -6,8 +6,8 @@ curl https://raw.githubusercontent.com/plutoniumm/x/master/x > /usr/local/bin/x
 
 Use normally as `x file <args?>`, it should support most languages with args and piping. so `x add.c 1 2 | x fib.rb 3` should work normally for some file `add.c` which takes `int,int` and `fib.rb` which takes `int,int` where output of add.c is piped into fib.rb as 2nd arg.
 
-## Ideas
-<!-- - Solve some specific navier stokes eq
+<!-- ## Ideas
+- Solve some specific navier stokes eq
 - Solve some specific general relativity case
 - Something with the 3-body problem
 - Something in statistical mechanics
