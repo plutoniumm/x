@@ -31,6 +31,10 @@ function runner(){
     str "$1" | gfortran -ffree-form -x f95 -o tmp -;
 
   # execute directly
+  elif [[ $1 == *.exs ]]; then
+    elixir "$1" "${args[@]}"
+    rm "${1%.*}.beam"
+    exit 0
   elif [[ $1 == *.rb ]]; then
     ruby "$1" "${args[@]}"
     exit 0

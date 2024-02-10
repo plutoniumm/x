@@ -1,3 +1,8 @@
+# x
+`x random.lang args`
+
+I recommend typing gcc over and over and over again if you commonly use 2-3-4 maybe even 5 languages. If you COMMONLY write scripts in like 15 languages (which i dont get why), then this is for you, otherwise generally it's for fun.
+
 ## Using
 Literally just curl it into local bin
 ```bash
@@ -10,9 +15,8 @@ Use normally as `x file <args?>`, it should support most languages with args and
 - Solve some specific navier stokes eq
 - Solve some specific general relativity case
 - Something with the 3-body problem
-- Something in statistical mechanics
-- https://en.wikipedia.org/wiki/Gauss%27s_constant
 - Calc e
+- Check if a complex number is in the Mandelbrot set
 - Calc euler-mascheroni constant
 - Omega constant by iterating over Oe^O = 1 -->
 
