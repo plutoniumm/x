@@ -16,7 +16,7 @@ This also assumes you have the relevant tooling present and in `$PATH`. It will 
 ## Using
 Literally just curl it into local bin
 ```bash
-curl https://manav.ch/r/gh:x?x > /usr/local/bin/x
+curl -L https://manav.ch/r/gh:x?x > /usr/local/bin/x
 ```
 
 <!-- ## Ideas
