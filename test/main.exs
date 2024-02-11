@@ -15,4 +15,3 @@ defmodule X do
 end
 
 X.main(System.argv())
-# -- elixir -e "Main.main(['599'])"
