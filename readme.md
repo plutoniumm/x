@@ -1,15 +1,23 @@
-# x
-`x random.lang args`
+# Xecute
+
+Just executing single file random scripts in multiple languages (list of langs is specified in tests). It MAY or may not work for multiple files/dependencies/imports but WILL work for 1 standalone file fosho. Stdin is supported as input
+
+Use normally as `x file <args?>`
+
+```sh
+x add.c 1 2 | x multiply.rb 5
+# should work properly and give 15
+```
 
 I recommend typing gcc over and over and over again if you commonly use 2-3-4 maybe even 5 languages. If you COMMONLY write scripts in like 15 languages (which i dont get why), then this is for you, otherwise generally it's for fun.
+
+This also assumes you have the relevant tooling present and in `$PATH`. It will error out in other cases
 
 ## Using
 Literally just curl it into local bin
 ```bash
 curl https://raw.githubusercontent.com/plutoniumm/x/master/x > /usr/local/bin/x
 ```
-
-Use normally as `x file <args?>`, it should support most languages with args and piping. so `x add.c 1 2 | x fib.rb 3` should work normally for some file `add.c` which takes `int,int` and `fib.rb` which takes `int,int` where output of add.c is piped into fib.rb as 2nd arg.
 
 <!-- ## Ideas
 - Solve some specific navier stokes eq
@@ -25,6 +33,7 @@ Use normally as `x file <args?>`, it should support most languages with args and
 - Lisp: Also same
 
 ## Tests
+We should get 69 in the end
 
 | Lang (.ext)        | Types         | Desc                                     |
 |--------------------|---------------|------------------------------------------|
@@ -49,3 +58,4 @@ Use normally as `x file <args?>`, it should support most languages with args and
 | Julia (`.jl`)      | `float→float`   | Angle in deg for 1 + i($n)               |
 | Cobol (`.cob`)     | `float→float`   | Escape vel for planet $n * Earth mass    |
 |OSA (`.applescript`)| `float→float`   | Benford Probabaility of $n 1st char      |
+|Shell (`.sh`)       | `float→int`    | Print 1st 2 decimal places of $n         |

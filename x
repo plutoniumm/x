@@ -30,7 +30,7 @@ function runner(){
   elif [[ $1 == *.f90 ]]; then
     str "$1" | gfortran -ffree-form -x f95 -o tmp -;
   elif [[ $1 == *.cob ]]; then
-    cobc -x -free main.cob -o a.out;
+    cobc -x -free $1 -o a.out;
   # execute directly
   elif [[ $1 == *.scpt ]]; then
     osascript "$1" "${args[@]}";
@@ -43,6 +43,8 @@ function runner(){
     rm "${1%.*}.beam";
   elif [[ $1 == *.rb ]]; then
     ruby "$1" "${args[@]}";
+  elif [[ $1 == *.jl ]]; then
+    julia "$1" "${args[@]}";
   elif [[ $1 == *.lua ]]; then
     lua "$1" "${args[@]}";
   elif [[ $1 == *.sc ]]; then
