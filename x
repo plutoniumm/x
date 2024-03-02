@@ -3,9 +3,9 @@ function str(){
   cat "$1" | sed -e 's/\t/ /g' | sed -e 's/  */ /g'
 }
 
-languages=("c" "cpp" "rs" "f90" "cob" "py" "sh" "java" "php" "rb" "kt" "go" "swift" "lua" "sc" "ml" "scpt" "applescript" "exs" "jl" "m" "r" "groovy" "mojo" "dart" "zig")
+languages=("c" "cpp" "rs" "f90" "cob" "py" "sh" "java" "php" "rb" "kt" "go" "swift" "lua" "sc" "ml" "scpt" "applescript" "exs" "jl" "m" "r" "groovy" "mojo" "dart" "zig" "mojo" "lisp")
 # some langs have custom checks which are ignored here
-deps=("g++" "gcc" "rustc" "gfortran" "cobc" "python3" "bash" "java" "php" "ruby" "kotlinc" "go" "swift" "lua" "scala" "ocaml" "osascript" "elixir" "julia" "octave" "rscript" "groovy" "mojo" "dart" "zig")
+deps=("g++" "gcc" "rustc" "gfortran" "cobc" "python3" "bash" "java" "php" "ruby" "kotlinc" "go" "swift" "lua" "scala" "ocaml" "osascript" "elixir" "julia" "octave" "rscript" "groovy" "mojo" "dart" "zig" "mojo" "emacs")
 
 
 function exists(){
@@ -56,6 +56,8 @@ function runner(){
     node "$1" "${args[@]}";
   elif [[ $1 == *.py ]]; then
     python3 "$1" "${args[@]}";
+  elif [[ $1 == *.mojo ]]; then
+    mojo "$1" "${args[@]}";
   elif [[ $1 == *.sh ]]; then
     bash "$1" "${args[@]}";
   elif [[ $1 == *.ts ]]; then
@@ -99,6 +101,9 @@ function runner(){
     octave "$1" "${args[@]}";
   elif [[ $1 == *.groovy ]]; then
     groovy "$1" "${args[@]}";
+  elif [[ $1 == *.lisp ]]; then
+    str="$(cat "$1")"
+    emacs --batch --eval "$str" "${args[@]}";
   elif [[ $1 == *.sc ]]; then
     scala "$1" "${args[@]}";
   elif [[ $1 == *.hs ]]; then

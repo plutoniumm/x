@@ -26,13 +26,6 @@ curl -L https://manav.ch/r/gh:x?x > /usr/local/bin/x
 ```
 
 <!-- ## Ideas
-- https://en.wikipedia.org/wiki/Projectile_motion#Trajectory_of_a_projectile_with_air_resistance
-
-- Solve some specific navier stokes eq
-- Solve some specific general relativity case
-- Something with the 3-body problem
-- Calc e
-- Calc euler-mascheroni constant
 - Omega constant by iterating over Oe^O = 1 -->
 
 ## Notes
@@ -73,7 +66,6 @@ We should get 69 in the end
 | Octave (`.m`)       | `float→float`    | 1st Bessel func at $\pi$ for $n$          |
 | Dart (`.dart`)  | `int→float`   | v if $n%2$th rocket was shot straight up |
 | Zig (`.zig`)  | `float→int`   | Sum(final angles) of 2xpendulum from initial angle $n$  |
-
-
-| Groovy (`.groovy`)  | `float→float`   | $n$ standard deviations from N(0)  |
 | Mojo (`.mojo`)  | `float→int`   | Stupid manipulations to get an int from a float  |
+| Emacs Lisp (`.lisp`)  | `int→float`   | $n$ iters of Omega Const from Lambert W |
+| Groovy (`.groovy`)  | `float→float`   | $n$ standard deviations from N(0)  |

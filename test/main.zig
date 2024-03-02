@@ -1,4 +1,5 @@
 const std = @import("std");
+const stdout = std.io.getStdOut().writer();
 
 const G: f64 = 9.81;
 const L1: f64 = 1.0;
@@ -67,5 +68,5 @@ pub fn main() !void {
     }
 
     const angles = [2]i32{ inted(y[0]), inted(y[2]) };
-    std.debug.print("{}\n", .{angles[0] + angles[1]});
+    try stdout.print("{}", .{angles[0] + angles[1]});
 }
