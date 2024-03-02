@@ -1,12 +1,7 @@
 # Xecute
+<img alt="Logo" align="right" src="./src/icon.svg" width="20%" />
 
 Just executing single file random scripts in multiple languages (list of langs is specified in tests). It MAY or may not work for multiple files/dependencies/imports but WILL work for 1 standalone file fosho. Stdin is supported as input
-
-$$
-k = -1-{\frac {\mu }{g}}v_{y0}\\
-t={\frac{1}{\mu}}(-k+W(ke^k))
-$$
-
 
 Use normally as `x file <args?>`
 
@@ -22,11 +17,8 @@ This also assumes you have the relevant tooling present and in `$PATH`. It will 
 ## Using
 Literally just curl it into local bin
 ```bash
-curl -L https://manav.ch/r/gh:x?x > /usr/local/bin/x
+curl -L https://manav.ch/r/gh:x?x > ~/.local/bin/x
 ```
-
-<!-- ## Ideas
-- Omega constant by iterating over Oe^O = 1 -->
 
 ## Notes
 - Perl: Idk if this is needed
@@ -36,7 +28,9 @@ curl -L https://manav.ch/r/gh:x?x > /usr/local/bin/x
 Evaluation order based on [Github metrics](https://innovationgraph.github.com/global-metrics/programming-languages).
 
 ## Tests
-We should get 69 in the end
+```sh
+sh tests.sh
+```
 
 | Lang (.ext)        | Types         | Desc                                     |
 |--------------------|---------------|------------------------------------------|

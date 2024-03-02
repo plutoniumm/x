@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="c">
+      <stop offset="0" stop-color="#2d2839"/>
+      <stop offset="1" stop-color="#282433"/>
+    </linearGradient>
+    <linearGradient xlink:href="#c" id="f" x1="70.3" x2="70.3" y1="245.4" y2="269.1" gradientUnits="userSpaceOnUse"/>
+  </defs>
+
+  <g transform="translate(0 -172)">
+    <rect width="96" height="88" x="16" y="-276" fill="#241f31" rx="8" transform="scale(1 -1)"/>
+
+    <text x="25" y="48" font-family="Courier New" font-size="40" font-weight="700" transform="translate(0 172)" fill="#fff">X</text>
+  </g>
+</svg>
