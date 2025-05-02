@@ -7,7 +7,6 @@ languages=("c" "cpp" "rs" "f90" "cob" "py" "sh" "java" "php" "rb" "kt" "go" "swi
 # some langs have custom checks which are ignored here
 deps=("g++" "gcc" "rustc" "gfortran" "cobc" "python3" "bash" "java" "php" "ruby" "kotlinc" "go" "swift" "lua" "scala" "ocaml" "osascript" "elixir" "julia" "octave" "rscript" "groovy" "mojo" "dart" "zig" "mojo" "emacs")
 
-
 function exists(){
   if command -v "$1" &> /dev/null; then
     echo "true"
@@ -24,8 +23,38 @@ function enforce(){
   fi
 }
 
+function autoexec(){
+  if [ -f package.json ]; then
+    if grep -q '"dev":' package.json; then
+      npm run dev;
+      exit 0;
+    elif grep -q '"start":' package.json; then
+      npm start;
+      exit 0;
+    fi
+  elif [ -f makefile ]; then
+    make;
+    exit 0;
+  elif [ -f go.mod ]; then
+    go run *.go;
+    exit 0;
+  fi
+}
+
 function runner(){
   args=("$@")
+  if [ ! -f "$1" ]; then
+    if [ -z "$1" ]; then
+      echo "No file, running autoexec";
+      autoexec;
+      exit 0;
+    fi
+
+    echo "not a file, got $1";
+    exit 1;
+  fi
+
+
   args=("${args[@]:1}")
   rcv_stdin=""
   if [ -p /dev/stdin ]; then
@@ -40,18 +69,16 @@ function runner(){
     fi
   done
 
-  # stream to compiler
   if [[ $1 == *.cpp ]]; then
-    str "$1" | g++ -w -x c++ -;
+    g++ -w -x c++ "$1" -o tmp;
   elif [[ $1 == *.c ]]; then
-    str "$1" | gcc -w -x c -;
+    gcc -w -x c "$1" -o tmp;
   elif [[ $1 == *.rs ]]; then
-    str "$1" | rustc -o tmp -;
+    rustc "$1" -o tmp;
   elif [[ $1 == *.f90 ]]; then
-    str "$1" | gfortran -ffree-form -x f95 -o tmp -;
+    gfortran -ffree-form -x f95 "$1" -o tmp;
   elif [[ $1 == *.cob ]]; then
     cobc -x -free $1 -o a.out;
-  # execute directly
   elif [[ $1 == *.js ]]; then
     node "$1" "${args[@]}";
   elif [[ $1 == *.py ]]; then
@@ -99,11 +126,8 @@ function runner(){
     Rscript "$1" "${args[@]}";
   elif [[ $1 == *.m ]]; then
     octave "$1" "${args[@]}";
-  elif [[ $1 == *.groovy ]]; then
-    groovy "$1" "${args[@]}";
   elif [[ $1 == *.lisp ]]; then
-    str="$(cat "$1")"
-    emacs --batch --eval "$str" "${args[@]}";
+    emacs --batch --eval "$(cat "$1")" "${args[@]}";
   elif [[ $1 == *.sc ]]; then
     scala "$1" "${args[@]}";
   elif [[ $1 == *.hs ]]; then
@@ -161,4 +185,4 @@ function runner(){
   fi
 }
 
-runner "$1" "${@:2}"
+runner "$1" "${@:2}";

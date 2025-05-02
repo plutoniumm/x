@@ -62,4 +62,5 @@ sh tests.sh
 | Zig (`.zig`)  | `float→int`   | Sum(final angles) of 2xpendulum from initial angle $n$  |
 | Mojo (`.mojo`)  | `float→int`   | Stupid manipulations to get an int from a float  |
 | Emacs Lisp (`.lisp`)  | `int→float`   | $n$ iters of Omega Const from Lambert W |
-| Groovy (`.groovy`)  | `float→float`   | $n$ standard deviations from N(0)  |
+
+<!-- Rscript -e 'install.packages("ggplot2", repos="https://cloud.r-project.org")' -->
